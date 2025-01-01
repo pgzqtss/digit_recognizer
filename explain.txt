@@ -1,0 +1,72 @@
+<1>
+How extract data into labels and features when dataset is 0-255 grayscales?
+1. Understand what are labels and features
+    - Labels: target values the model tries to predict (0-9)
+    - Features: pixel values (0-255) representing grayscale values
+2. How it distingushes the label column?
+        train = pd.read_csv('train.csv')
+    When load data using pd, the CSV file for the MNIST dataset
+    typically includes a "label" column and columns for each pixel values
+    <Which means.. it is labeled!! (supervised learning)>
+    Looks like this:
+        label  pixel1  pixel2  pixel3  ...  pixel784
+        0      0      0      0      ...  0
+        8      0      0      0      ...  0
+        5      0      0      0      ...  0
+        ...
+    SO...
+    train = train.loc[:5000] working with 5000 images, each 784 pixel values
+    cuz 28x28 pixel image = 784 pixels in row
+    each row represents one image
+
+
+<2>
+Normalizing data by looping through images/rows
+Each image/row
+1. convert row to NumPy Array 
+        tmp = np.array(list...
+2. 784 items in array -> resize array to 28x28
+        tmp = np.resize(tmp,(28,28))
+3. resize array to 128x128 to match the input processing and model training
+        img_r = resize(tmp, (128, 128, 1))
+    This resize function unterpolates the pixel values to fit the
+    new dimentions, creating larger image that maintains the original
+    context's structure.
+Q:  Why is step 2 necessary?
+A:  Original data in CSV file is in a flatterned format, if i bring array
+    directly to 128x128, it might appear mistakes in reshaping
+
+
+<3>
+Neural Network: Layering
+
+Explain keras funtions:
+    layers.Conv2D(...)      2D convolutional layer 
+    with 32 filters,
+    kernel size 3x3,
+    activation function ReLU, 
+    'same' padding ensures the output size is same as input size
+    input shape 128x128 pixels with 1 channel (grayscale)
+
+    layers.MaxPool2D()      Max pooling layer
+    
+    layers.Dense(...)       Fully connected /Dense layer
+        
+Why use Conv2D and MaxPool2D layers?
+    Convolutional Layer:
+    -   automatically and adapively LEARN spatial hierarchies (different 
+        levels of abstraction) of FEATURES from input images
+    -   each neuron in a convolutional layer is connected to a small region of the input, 
+        allowing the network to focus on local patterns
+    Pooling Layer:
+    -   REDUCE the spatial DIMENTIONS (height and width) of the input volume
+    -   pooling helps in making the network more robust to small translations 
+        and distortions in the input image
+    -   by 2x2 (small region pooling) -> preserves the most important information
+    Fully Connected/ Dense Layer:
+    -   Dense layers take the high-level features extracted by convolutional 
+        layers and combine them to make predictions
+    -   Each neuron in a dense layer is connected to every neuron in the previous layer,
+        allowing network to learn complex relationships between features
+
+        
