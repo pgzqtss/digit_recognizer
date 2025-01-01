@@ -18,8 +18,8 @@ This project is a digit recognition system using a Convolutional Neural Network 
 
 1. Clone the repository:
     ```sh
-    git clone <repository-url>
-    cd <repository-directory>
+    git clone <https://github.com/pgzqtss/digit_recognizer>
+    cd <https://github.com/pgzqtss/digit_recognizer>
     ```
 
 2. Install the required dependencies:
@@ -43,7 +43,7 @@ This project is a digit recognition system using a Convolutional Neural Network 
 
 ### Data Preparation
 
-- The training data is loaded from [train.csv](http://_vscodecontentref_/9) and the first 5000 rows are used for training.
+- The training data is loaded from [train.csv] and the first 5000 rows are used for training.
 - The data is split into features and labels.
 - The features are normalized and resized to 128x128 to match the input requirements of the InceptionV3 model.
 
@@ -56,19 +56,15 @@ This project is a digit recognition system using a Convolutional Neural Network 
 ### Training
 
 - The model is trained for 10 epochs on the normalized training data.
-- The trained model is saved as [model.h5](http://_vscodecontentref_/10).
+- The trained model is saved as [model.h5].
 
 ### Prediction
 
-- The test data is loaded from [test.csv](http://_vscodecontentref_/11) and normalized.
+- The test data is loaded from [test.csv] and normalized.
 - The trained model is used to predict the labels for the test data.
-- The predictions are saved in [out.csv](http://_vscodecontentref_/12).
+- The predictions are saved in [out.csv].
 
 ### Validation
 
-- The [check.py](http://_vscodecontentref_/13) script loads the predictions from [out.csv](http://_vscodecontentref_/14) and compares them with the expected labels.
+- The [check.py] script loads the predictions from [out.csv] and compares them with the expected labels.
 - Any mismatches are displayed along with the corresponding images.
-
-## License
-
-This project is licensed under the MIT License.
