@@ -66,5 +66,4 @@ This project is a digit recognition system using a Convolutional Neural Network 
 
 ### Validation
 
-- The [check.py] script loads the predictions from [out.csv] and compares them with the expected labels.
-- Any mismatches are displayed along with the corresponding images.
+- The [check.py] script loads the handwritten images and the predicted output. Allow us to compare whether it is correct or not.
